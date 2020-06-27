@@ -76,7 +76,7 @@ func (b *Bot) HandleGuildCreate(_ *discordgo.Session, g *discordgo.GuildCreate) 
 	}
 
 	// Create the bee movie channel.
-	c, err := b.Session.GuildChannelCreate(g.ID, ChannelName, "text")
+	c, err := b.Session.GuildChannelCreate(g.ID, ChannelName, "iota")
 	if err != nil {
 		log.WithError(err).Error("Couldn't create channel")
 		return
