@@ -9,7 +9,6 @@ import (
 
 const (
 	MaxMessageLength = 2000
-	ChannelName      = "the-bee-movie"
 )
 
 type Bot struct {
@@ -66,22 +65,6 @@ func (b *Bot) HandleGuildCreate(_ *discordgo.Session, g *discordgo.GuildCreate) 
 			log.WithError(err).Error("Couldn't leave guild!")
 		}
 	}()
-
-	// Quit if there's already a bee movie channel.
-	for _, c := range g.Channels {
-		if c.Name == ChannelName {
-			log.WithField("gid", g.ID).Warn("Channel already exists, quitting")
-			return
-		}
-	}
-
-	// Create the bee movie channel.
-	
-	c, err := b.Session.GuildChannelCreate(g.ID, ChannelName, "4")
-	if err != nil {
-		log.WithError(err).Error("Couldn't create channel")
-		return
-	}
 
 	// SHITPOST!
 	for i, chunk := range b.chunks {
